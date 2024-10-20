@@ -1,0 +1,6 @@
+[submodule "LongLM"]
+	path = LongLM
+	url = https://github.com/yongleyuan/LongLM.git
+[submodule "LongBench"]
+	path = LongBench
+	url = https://github.com/yongleyuan/LongBench.git
