@@ -5,7 +5,9 @@ Course project for [CSE 60556] Large Language Models
 ## Updates
 
 - \[Oct 28\]: Add `requirements.txt` for easier Python environment construction.
-- \[Oct 28\]: Repreduced Gemma-2b (without SelfExtend) on LongBench, it needs at least 3 A10s to run.
+- [ ] \[Oct 28\]: Repreduced Gemma-2b (without SelfExtend) on LongBench, it needs at least 3 A10s to run.
+	- Unable to use bfloat16 (maybe due to transformers version)
+	- Using float16 will cause OOM even with 4 A10s
 - \[Oct 20\]: Created README.
 - \[Oct 19\]: Reproduced Phi-2 with SelfExtend on LongBench.
 - \[Oct 17\]: Reproduced Llama2-7b and Phi-2 on SelfExtend `example.py`.
