@@ -4,10 +4,15 @@ Course project for [CSE 60556] Large Language Models
 
 ## Updates
 
+- \[Nov 11\]: Update README.
+- \[Nov 11\]: Phi models are run successfully, Gemma models have "8193 error", **Llama3.2 models need more work**.
+- \[Nov 10\]: Updates config files: change to more meaningful and consistent names.
+- \[Nov 10\]: Updates requirements.txt, note that everything related to `torch` (including `flash_attn`) needs to be installed at the end
+	- DO NOT USE DOCKER ENVIRONMENT, use `conda` instead
 - \[Oct 28\]: Add `requirements.txt` for easier Python environment construction.
-- [ ] \[Oct 28\]: Repreduced Gemma-2b (without SelfExtend) on LongBench, it needs at least 3 A10s to run.
-	- Unable to use bfloat16 (maybe due to transformers version)
-	- Using float16 will cause OOM even with 4 A10s
+~- \[Oct 28\]: Repreduced Gemma-2b (without SelfExtend) on LongBench, it needs at least 3 A10s to run.~
+	~- Unable to use bfloat16 (maybe due to transformers version)~
+	~- Using float16 will cause OOM even with 4 A10s~
 - \[Oct 20\]: Created README.
 - \[Oct 19\]: Reproduced Phi-2 with SelfExtend on LongBench.
 - \[Oct 17\]: Reproduced Llama2-7b and Phi-2 on SelfExtend `example.py`.
@@ -15,7 +20,7 @@ Course project for [CSE 60556] Large Language Models
 ## Setup
 
 1. Clone this repository on CRC
-2. Download [this docker image](https://hub.docker.com/r/hoytjin/selfextend_docker/tags) somewhere on CRC
+2. ~Download [this docker image](https://hub.docker.com/r/hoytjin/selfextend_docker/tags) somewhere on CRC~
 3. Make sure you have enough storage on your CRC account, I have emailed crcsupport@nd.edu to open a 500 GB storage space in `/scratch365/`
 
 ## Usage
@@ -42,21 +47,14 @@ To run `LongLM/example.py`, use the following job script:
 #$ -N longlm-example
 #$ -o longlm-example.out
 
-echo 'This script is run with 1 gpus'
+module load cuda
+conda activate name_of_your_env
 
-APPTAINER_PATH=${PATH}
-APPTAINER_LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
-
-module load cuda/11.8 # Downloaded Docker environment requires cuda 11.8, CRC's default is cuda 12.1
-
-apptainer exec \
-	-B /afs -B /opt/crc -B /scratch365 \ # mount all root dirs to docker
-	--no-home --nv \
-	/path/to/your/docker/file.sif \
-	bash -c \
-	"cd /path/to/your/long-context-small-lm/LongLM/ && python example.py"
+cd /path/to/your/long-context-small-lm/LongLM/
+python example.py
 
 echo 'Script completed'
+echo 'This script is run with 1 gpus'
 ```
 
 To run `LongBench/pred.py` (using Phi-2 as an example), use the following job script:
@@ -72,27 +70,31 @@ To run `LongBench/pred.py` (using Phi-2 as an example), use the following job sc
 #$ -N longbench-phi-2
 #$ -o longbench-phi-2.out
 
-echo 'This script is run with 2 gpus'
+module load cuda
+conda activate name_of_your_env
 
-APPTAINER_PATH=${PATH}
-APPTAINER_LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
-
-module load cuda/11.8
-
-export APPTAINERENV_CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}
-apptainer exec \
-	-B /afs -B /opt/crc -B /scratch365 \
-	--no-home --nv \
-	/path/to/your/docker/file.sif \
-	bash -c \
-	"cd /path/to/your/long-context-small-lm/LongBench/ && python pred.py --model phi-2"
+cd /path/to/your/long-context-small-lm/LongBench/
+python pred.py --model phi-2
 
 echo 'Script completed'
+echo 'This script is run with 2 gpus'
 
 ```
 
 ## TODOs
 
-- [ ] Reproduce Gemma (NOTE: might need to change precision when loading the model)
-- [ ] Add more model configs to `LongBench/config/` for it to be compatible with other models
-- [ ] More ...
+- [x] Add more model configs to `LongBench/config/` for it to be compatible with other models
+- [x] Phi1.5-1b
+- [ ] Phi1.5-1b SE
+- [x] Phi2-3b
+- [ ] Phi2-3b SE
+- [ ] Gemma-2b
+	- "8193 error"
+- [ ] Gemma-2b SE
+- [ ] Gemma-2-2b
+	- "8193 error"
+- [ ] Gemma-2-2b SE
+- [ ] Llama3.2-1b
+- [ ] Llama3.2-1b SE
+- [ ] Llama3.2-3b
+- [ ] Llama3.2-3b SE
