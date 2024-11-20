@@ -90,6 +90,7 @@ echo 'This script is run with 2 gpus'
 - [ ] Phi2-3b SE
 - [ ] Gemma-2b
 	- "8193 error"
+	- May need to use flash attention 2.0
 - [ ] Gemma-2b SE
 - [ ] Gemma-2-2b
 	- "8193 error"
