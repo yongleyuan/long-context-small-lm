@@ -81,24 +81,6 @@ echo 'This script is run with 2 gpus'
 
 ## Tricks / Known issues
 
-<<<<<<< HEAD
-- [x] Add more model configs to `LongBench/config/` for it to be compatible with other models
-- [x] Phi1.5-1b
-- [ ] Phi1.5-1b SE
-- [x] Phi2-3b
-- [ ] Phi2-3b SE
-- [ ] Gemma-2b
-	- "8193 error"
-	- May need to use flash attention 2.0
-- [ ] Gemma-2b SE
-- [ ] Gemma-2-2b
-	- "8193 error"
-- [ ] Gemma-2-2b SE
-- [ ] Llama3.2-1b
-- [ ] Llama3.2-1b SE
-- [ ] Llama3.2-3b
-- [ ] Llama3.2-3b SE
-=======
 ### Use interactive GPU frontend
 
 Use `qrsh -q gpu -l gpu_card=1` to attach to an interactice frontend on GPU nodes. Then activate your conda environment and run your job directly without submitting job scripts (i.e. `python pred.py ...`). This allows you to have an idea if the script is run successfully. If not, make adjustments; else, submit your job script.
@@ -131,23 +113,23 @@ In most cases, flash attention should **not** be used. If the model can only be 
 
 ~**Gemma2-2b:**~
 
+(Phi3 has only intruction-finetuned models)
+
 **Phi3-mini-4k:**
 - [ ] Without SE (Jialiang)
 - [ ] With SE (Jialiang)
 
 **Phi3-mini-128k:**
-- [ ] Without SE (Jialiang)
+- [ ] Without SE (Jialiang
 - [ ] With SE (Jialiang)
 
 #### SLMs with long context length
 
-**Llama3.2-1b:**
-- [ ] Without SE (Jack)
-- [ ] With SE (Jack)
+~**Llama3.2-1b:**~
 
-**Llama3.2-3b:**
-- [ ] Without SE (Jack)
-- [ ] With SE (Jack)
+~**Llama3.2-3b:**~
+
+(Qwen2 has both vanilla intruction-finetuned models)
 
 **Qwen2-0.5b:**
 - [ ] Without SE (Sidney)
