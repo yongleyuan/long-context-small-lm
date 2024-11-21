@@ -99,15 +99,15 @@ In most cases, flash attention should **not** be used. If the model can only be 
 
 #### SLMs with short context length
 
-**Phi1.5-1b:**
+**Phi1.5-1b:** (transformers==4.38.2)
 - [x] Without SE
 - [ ] With SE (Jack)
 
-**Phi2-3b:**
+**Phi2-3b:** (transformers==4.38.2)
 - [x] Without SE
 - [x] With SE
 
-**Gemma-2b:**
+**Gemma-2b:** (transformers==4.42.3)
 - [x] Without SE
 - [x] With SE
 
