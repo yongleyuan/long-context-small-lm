@@ -141,4 +141,8 @@ In most cases, flash attention should **not** be used. If the model can only be 
 
 ### Hyperparameter calculation
 
-TBD
+| Pre-trained Context Length \ Extended Context Length | 8k | 16k | 24k | 32k |
+| :---: | :---: | :---: | :---: | :---: |
+| 2k | 4, 32 | 9, 256 | 14, 282 | 17, 128 |
+| 4k | / | 5, 1024 | 6, 116 | 9, 500 |
+| 8k | / | / | 4, 2922 | 5, 2048 |
